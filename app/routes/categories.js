@@ -47,50 +47,6 @@ module.exports=function(express,pool, jwt, secret) {
         }
     })
 
-    // }).post(async function (req, res) {
-    //     try {
-    //
-    //         let conn = await pool.getConnection();
-    //         let q = await conn.query('INSERT INTO posts SET ?', req.body);
-    //         conn.release();
-    //         res.status(200).json({insertId: q.insertId});
-    //
-    //     } catch (e) {
-    //         console.log(e);
-    //         res.json({status: 'NOT OK'});
-    //     }
-    //
-    // }).put(async function (req, res) {
-    //     try {
-    //
-    //         let conn = await pool.getConnection();
-    //         let q = await conn.query('UPDATE posts SET ? WHERE _id = ?', [req.body, req.body.id]);
-    //         conn.release();
-    //         res.status(200).json({changedRows: q.changedRows});
-    //         console.log(q);
-    //
-    //     } catch (e) {
-    //         console.log(e);
-    //         res.json({status: 'NOT OK'});
-    //     }
-    //
-    //
-    // }).delete(async function (req, res) {
-    //     try {
-    //         let conn = await pool.getConnection();
-    //         let q = await conn.query('DELETE FROM posts WHERE id = ?', req.body.id);
-    //         conn.release();
-    //         res.status(200).json({changedRows: q.changedRows});
-    //         console.log(q);
-    //
-    //     } catch (e) {
-    //         console.log(e);
-    //         res.json({status: 'NOT OK'});
-    //     }
-    //
-    //
-    // });
-
     categoryRouter.route('/category/:id').get(async function(req,res){
         try {
             let conn = await pool.getConnection();

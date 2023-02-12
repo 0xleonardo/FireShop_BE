@@ -26,7 +26,7 @@ module.exports=function(express,pool, jwt, secret){
         }
     });
 
-    apiRouter.get('/me', function (req, res){
+    apiRouter.get( '/me',function (req, res){
         res.status(200).send({ user : req.decoded });
     });
 

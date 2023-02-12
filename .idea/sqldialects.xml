@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/app/routes/admin.js" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/app/routes/authenticate.js" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/app/routes/categories.js" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/app/routes/items.js" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/app/routes/user.js" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/app/routes/orders.js" dialect="MySQL" />
   </component>
 </project>

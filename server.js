@@ -41,8 +41,14 @@ app.use('/api', categoryRouter);
 const itemRouter = require('./app/routes/items')(express,pool, jwt, config.secret);
 app.use('/api', itemRouter);
 
+const orderRouter = require('./app/routes/orders')(express,pool, jwt, config.secret);
+app.use('/api', orderRouter);
+
 const userRouter = require('./app/routes/user')(express,pool, jwt, config.secret);
-app.use('/api', userRouter);
+app.use('/api/user', userRouter);
+
+const adminRouter = require('./app/routes/admin')(express,pool, jwt, config.secret);
+app.use('/api/admin', adminRouter);
 
 app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname + '/public/app/index.html'));

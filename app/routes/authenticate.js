@@ -42,6 +42,7 @@ module.exports=function(express, pool, jwt, secret){
 
     authRouter.route('/login').post( async function(req,res){
         try {
+            console.log(req.body)
 
             const db = await pool.getConnection();
             const user = await db.query('SELECT * FROM shop.users WHERE email=?', req.body.email);

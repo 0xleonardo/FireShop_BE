@@ -1,8 +1,8 @@
 {
-  "name": "mean",
+  "name": "shop_be",
   "version": "1.0.0",
   "description": "",
-  "main": "NJP11-1.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./server.js"
