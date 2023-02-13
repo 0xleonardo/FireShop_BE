@@ -26,16 +26,32 @@ module.exports=function(express,pool, jwt, secret) {
         }
     });
 
-    itemRouter.route('/item/bought').put(async function (req, res) {
+    itemRouter.route('/items/bought').put(async function (req, res) {
+        const items = req.body;
+
+        let connection = await pool.getConnection();
         try {
-            console.log(res.body)
-            let conn = await pool.getConnection();
-            //let q = await conn.query('UPDATE shop.item SET amount = amount-1 WHERE id IN (?)', req.body.id);
-            conn.release();
-            return res.status(200).json({changedRows: q.changedRows});
-        } catch (e) {
-            console.log(e);
-            res.json({status: 'NOT OK'});
+            // Loop through each item and check if the amount is zero in the database
+            for (const item of items) {
+                const checkSql = `SELECT * FROM shop.item WHERE id = ?`;
+                const checkParams = [item.id];
+                const [rows] = await connection.query(checkSql, checkParams);
+
+                if (rows.amount-item.amount < 0) {
+                    throw new Error(`Not enough ${rows.brand} ${rows.series} to buy!`);
+                }
+
+                const updateSql = `UPDATE shop.item SET amount = amount - ? WHERE id = ?`;
+                const updateParams = [item.amount, item.id];
+                await connection.query(updateSql, updateParams);
+            }
+
+            connection.release();
+
+            return res.status(200).send({status: 200, msg: 'Items updated successfully' });
+        } catch (error) {
+            connection.release();
+            return res.send({ status: 404, msg: error.message });
         }
     })
 
